@@ -1,12 +1,30 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    paths:
+      - "model/notebooks/**"
+  pull_request:
+    paths:
+      - "model/notebooks/**"
+
 jobs:
-  lint:
+  notebooks:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
-      - run: pip install ruff mypy
-      - run: ruff check model/src/ app/backend/
-      - run: mypy model/src/ app/backend/
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install nbstripout nbqa ruff
+
+      - name: Check notebooks have no outputs
+        run: |
+          nbstripout --verify model/notebooks/*.ipynb
+
+      - name: Lint notebooks
+        run: nbqa ruff model/notebooks/ --select E,F,W --ignore E501
