@@ -34,4 +34,4 @@ jobs:
           nbqa ruff model/notebooks/ --select E,F,W 
           
           # Lint Python files in src
-          ruff model/src/*.py --select E,F,W 
+          ruff check model/src/*.py --select E,F,W 
