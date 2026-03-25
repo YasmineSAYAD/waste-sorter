@@ -40,8 +40,12 @@ model/saved/
 *.pb
 
 # Datasets
-model/data/
-*.csv
+model/data/raw/
+model/data/processed/
+model/data/splits/
+*.jpg
+*.jpeg
+*.png
 
 # MLflow / DVC
 mlruns/
