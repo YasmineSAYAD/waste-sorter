@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - "model/notebooks/**"
+      - "model/src/**"
   pull_request:
     paths:
       - "model/notebooks/**"
+      - "model/src/**"
 
 jobs:
   notebooks:
@@ -26,5 +28,10 @@ jobs:
         run: |
           nbstripout --verify model/notebooks/*.ipynb
 
-      - name: Lint notebooks
-        run: nbqa ruff model/notebooks/ --select E,F,W --ignore E501
+      - name: Lint notebooks and Python scripts
+        run: |
+          # Lint notebooks
+          nbqa ruff model/notebooks/ --select E,F,W --ignore E501
+          
+          # Lint Python files in src
+          ruff model/src/*.py --select E,F,W --ignore E501
