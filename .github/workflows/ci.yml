@@ -31,7 +31,7 @@ jobs:
       - name: Lint notebooks and Python scripts
         run: |
           # Lint notebooks
-          nbqa ruff model/notebooks/ --select E,F,W --ignore E501
+          nbqa ruff model/notebooks/ --select E,F,W 
           
           # Lint Python files in src
-          ruff model/src/*.py --select E,F,W --ignore E501
+          ruff model/src/*.py --select E,F,W 

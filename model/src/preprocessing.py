@@ -12,7 +12,7 @@ from torchvision import transforms
 
 IMAGE_SIZE = (224, 224)
 
-# Calculated in eda.ipynb using the dataset 
+# Calculated in eda.ipynb using the dataset
 MEAN_CUSTOM = [0.6493, 0.6345, 0.6164]
 STD_CUSTOM  = [0.2574, 0.2545, 0.278]
 
