@@ -1,0 +1,90 @@
+{
+  "battery": {
+    "type": "Pile/Batterie",
+    "recyclable": true,
+    "bac": "Point de collecte",
+    "alt": "Supermarché ou magasin",
+    "advice": "Dépose-les dans un point de collecte, ne les jette jamais à la poubelle.",
+    "index": 0
+  },
+  "cardboard": {
+    "type": "Carton",
+    "recyclable": true,
+    "bac": "Bac jaune",
+    "alt": null,
+    "advice": "À plier pour gagner de la place.",
+    "index": 1
+  },
+  "electronic": {
+    "type": "Électronique",
+    "recyclable": true,
+    "bac": "Déchèterie",
+    "alt": "Magasin (reprise gratuite)",
+    "advice": "Le magasin reprend ton ancien appareil lors d’un achat, et accepte aussi les petits appareils sans obligation d’achat.",
+    "index": 2
+  },
+  "glass": {
+    "type": "Verre",
+    "recyclable": true,
+    "bac": "Bac blanc",
+    "alt": "Borne à verre (verte)",
+    "advice": "Pense à enlever les bouchons et capsules avant de jeter.",
+    "index": 3
+  },
+  "metal": {
+    "type": "Métal",
+    "recyclable": true,
+    "bac": "Bac jaune",
+    "alt": "Déchèterie (pour les gros objets métalliques)",
+    "advice": "Boîtes de conserve, canettes acceptées.",
+    "index": 5
+  },
+  "organic": {
+    "type": "Déchets organiques",
+    "recyclable": false,
+    "bac": "Bac marron",
+    "alt": "Compost maison",
+    "advice": "Le tri des biodéchets est désormais obligatoire (depuis 2024), si une solution est disponible près de chez toi.",
+    "index": 6
+  },
+  "paper": {
+    "type": "Papier",
+    "recyclable": true,
+    "bac": "Bac jaune",
+    "alt": "Point tri",
+    "advice": "Pas de papier gras ou mouillé",
+    "index": 7
+  },
+  "plastic": {
+    "type": "Plastique",
+    "recyclable": true,
+    "bac": "Bac jaune",
+    "alt": "Déchèterie (pour les plastiques durs ou volumineux)",
+    "advice": "Tous les emballages plastiques sont maintenant acceptés grâce à l'extension des consignes de tri.",
+    "index": 8
+  },
+  "textile": {
+    "type": "Textile",
+    "recyclable": true,
+    "bac": "Borne textile",
+    "alt": "Associations (Emmaüs, Croix-Rouge)",
+    "advice": "Même usés, à déposer propres et secs dans un sac fermé.",
+    "index": 9
+  },
+  "medical": {
+    "type": "Déchets médicaux",
+    "recyclable": true,
+    "bac": "Borne textile",
+    "alt": "Retour à un point de collecte médical",
+    "advice": "Les déchets médicaux tels que seringues, aiguilles, stylos injecteurs et pansements doivent être déposésdans des points de collecte spécialisés. Ne pas les jeter dans la poubelle classique. Si l'emballage est vide, il peut être jeté dans la poubelle appropriée (comme le plastique ou le papier), mais uniquement après avoir correctement éliminé le contenu et s'assurer qu'il ne présente aucun danger.",
+    "index": 4
+  },
+  "trash": {
+    "type": "Déchets",
+    "recyclable": false,
+    "bac": "Bac gris",
+    "alt": "Déchèterie",
+    "advice": "Utilise cette poubelle uniquement si tu ne peux pas trier autrement.",
+    "index": 10
+  }
+}

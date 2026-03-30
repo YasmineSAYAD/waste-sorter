@@ -1,0 +1,62 @@
+{
+  "total_images": 11256,
+  "classes": [
+    "battery",
+    "cardboard",
+    "electronic",
+    "glass",
+    "medical",
+    "metal",
+    "organic",
+    "paper",
+    "plastic",
+    "textile",
+    "trash"
+  ],
+  "class_counts": {
+    "battery": 821,
+    "cardboard": 1159,
+    "electronic": 993,
+    "glass": 1171,
+    "medical": 1074,
+    "metal": 1067,
+    "organic": 967,
+    "paper": 1027,
+    "plastic": 1109,
+    "textile": 985,
+    "trash": 883
+  },
+  "class_weights": {
+    "battery": 1.2463736020374265,
+    "cardboard": 0.8828927759039925,
+    "electronic": 1.0304861301840154,
+    "glass": 0.8738451983541651,
+    "medical": 0.9527679024885729,
+    "metal": 0.9590184885405129,
+    "organic": 1.058193099558146,
+    "paper": 0.9963707178897052,
+    "plastic": 0.9226985818509714,
+    "textile": 1.038855560682972,
+    "trash": 1.1588592607845156
+  },
+  "imbalance_ratio": 1.43,
+  "image_size_target": [
+    224,
+    224
+  ],
+  "mean_rgb": [
+    0.645,
+    0.6346,
+    0.6089
+  ],
+  "std_rgb": [
+    0.2613,
+    0.2596,
+    0.2849
+  ],
+  "splits": {
+    "train": 9004,
+    "val": 1126,
+    "test": 1126
+  }
+}
