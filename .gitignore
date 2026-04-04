@@ -39,9 +39,11 @@ model/saved/
 *.joblib
 *.pb
 
-# Datasets
+# Data
 model/data/raw/
 model/data/processed/
+model/data/yolo/
+*.cache
 model/data/splits/
 *.jpg
 *.jpeg
