@@ -39,19 +39,18 @@ model/saved/
 *.joblib
 *.pb
 
-# Datasets
+# Data
 model/data/raw/
 model/data/processed/
+model/data/yolo/
+*.cache
 model/data/splits/
 *.jpg
 *.jpeg
 *.png
 
-# MLflow / DVC
-mlruns/
-.dvc/tmp/
-.dvc/cache/
-mlartifacts/
+# MLflow 
+model/mlruns/
 
 # ===========================
 # Environment variables
