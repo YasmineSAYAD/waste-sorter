@@ -31,6 +31,14 @@
     "advice": "Pense à enlever les bouchons et capsules avant de jeter.",
     "index": 3
   },
+  "medical": {
+    "type": "Déchets médicaux",
+    "recyclable": true,
+    "bac": "Borne textile",
+    "alt": "Retour à un point de collecte médical",
+    "advice": "Les déchets médicaux tels que seringues, aiguilles, stylos injecteurs et pansements doivent être déposésdans des points de collecte spécialisés. Ne pas les jeter dans la poubelle classique. Si l'emballage est vide, il peut être jeté dans la poubelle appropriée (comme le plastique ou le papier), mais uniquement après avoir correctement éliminé le contenu et s'assurer qu'il ne présente aucun danger.",
+    "index": 4
+  },
   "metal": {
     "type": "Métal",
     "recyclable": true,
@@ -70,14 +78,6 @@
     "alt": "Associations (Emmaüs, Croix-Rouge)",
     "advice": "Même usés, à déposer propres et secs dans un sac fermé.",
     "index": 9
-  },
-  "medical": {
-    "type": "Déchets médicaux",
-    "recyclable": true,
-    "bac": "Borne textile",
-    "alt": "Retour à un point de collecte médical",
-    "advice": "Les déchets médicaux tels que seringues, aiguilles, stylos injecteurs et pansements doivent être déposésdans des points de collecte spécialisés. Ne pas les jeter dans la poubelle classique. Si l'emballage est vide, il peut être jeté dans la poubelle appropriée (comme le plastique ou le papier), mais uniquement après avoir correctement éliminé le contenu et s'assurer qu'il ne présente aucun danger.",
-    "index": 4
   },
   "trash": {
     "type": "Déchets",

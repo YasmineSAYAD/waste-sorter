@@ -47,11 +47,8 @@ model/data/splits/
 *.jpeg
 *.png
 
-# MLflow / DVC
-mlruns/
-.dvc/tmp/
-.dvc/cache/
-mlartifacts/
+# MLflow 
+model/mlruns/
 
 # ===========================
 # Environment variables
