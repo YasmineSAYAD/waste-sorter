@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 WORKDIR /app
-
+ENV API_URL=http://backend:8000
 RUN pip install --no-cache-dir streamlit requests pillow
 
 COPY . .

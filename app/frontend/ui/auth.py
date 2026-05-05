@@ -1,5 +1,10 @@
 import streamlit as st
+import time
 
+from core.session import init_session
+from core.api import api_post
+
+# ── Auth ─────────────────────────────────────────────────
 def page_login():
     _, col, _ = st.columns([1, 1.3, 1])
     with col:
@@ -100,3 +105,29 @@ def page_login():
                     else:
                         st.session_state.rgpd_accepted = False
                         st.success("Compte créé avec succès! Connectez-vous dans l'onglet Connexion.")
+
+# ── Logout ───────────────────────────────────────────────────
+def do_logout():
+    api_post("/api/v1/users/logout")
+    remembered = st.session_state.get("remember_me", False)
+    em = st.session_state.get("remembered_email", "")
+    pw = st.session_state.get("remembered_password", "")
+    for k in list(st.session_state.keys()):
+        del st.session_state[k]
+    init_session()
+    if remembered:
+        st.session_state["remembered_email"] = em
+        st.session_state["remembered_password"] = pw
+        st.session_state["remember_me"] = True
+
+# ── Remember me ───────────────────────────────────────────────────
+def save_credentials(email: str, password: str):
+    st.session_state["remembered_email"] = email
+    st.session_state["remembered_password"] = password
+    st.session_state["remember_me"] = True
+
+
+def clear_credentials():
+    for k in ["remembered_email", "remembered_password", "remember_me"]:
+        st.session_state.pop(k, None)
+

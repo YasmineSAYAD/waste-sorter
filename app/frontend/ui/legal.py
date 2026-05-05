@@ -3,7 +3,7 @@ import streamlit as st
 def page_cgu():
     st.subheader("Conditions Générales d'Utilisation")
     st.markdown('<span class="legal-badge">Mise à jour : Avril 2026</span>', unsafe_allow_html=True)
- 
+
     sections = [
         ("1. Objet", """
         Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation
@@ -52,7 +52,7 @@ def page_cgu():
         **Contact :** contact@waste-sorter.fr
                 """),
             ]
-        
+
     for title, content in sections:
         st.markdown(f"""
         <div class="legal-section">
@@ -60,12 +60,12 @@ def page_cgu():
             <p>{content.strip()}</p>
         </div>
         """, unsafe_allow_html=True)
-        
-        
+
+
 def page_politique():
     st.subheader("Politique de Confidentialité")
     st.markdown('<span class="legal-badge">Conforme RGPD — Règlement UE 2016/679</span>', unsafe_allow_html=True)
-        
+
     sections = [
     ("1. Responsable du traitement", """
     Le responsable du traitement des données personnelles collectées via l'application waste-sorter est :
@@ -141,16 +141,16 @@ def page_politique():
             """),
             ("9. Contact et DPO", """
     Pour toute question relative à la protection de vos données ou pour exercer vos droits :
-        
+  
     **Email :** contact@waste-sorter.fr
     **Adresse :** waste-sorter — Paris, France
     **CNIL :** www.cnil.fr — 3 Place de Fontenoy, 75007 Paris
-        
+
     La présente politique est applicable depuis le **1er janvier 2026**.
     Elle sera mise à jour en cas d'évolution réglementaire ou de changement dans nos pratiques.
             """),
         ]
-        
+
     for title, content in sections:
         st.markdown(f"""
         <div class="legal-section">

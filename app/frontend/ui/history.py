@@ -1,5 +1,7 @@
 import streamlit as st
 
+from core.api import api_get
+
 def page_history():
     st.subheader("Mon historique")
     st.divider()

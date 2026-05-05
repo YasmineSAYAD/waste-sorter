@@ -1,44 +1,49 @@
 import streamlit as st
 
-from core.session import init_session
-from core.config import load_config
-from core.api import API_URL
+from ui.auth import do_logout
 
-from ui.sidebar import render_sidebar
-from ui.auth import page_login
-from ui.scanner import page_scanner
-from ui.history import page_history
-from ui.profile import page_profile
-from ui.legal import page_cgu, page_politique
-from styles.main import load_css
+def render_sidebar():
+    user = st.session_state.user or {}
+    first = user.get("first_name", "")
+    last = user.get("last_name", "")
+    initials = f"{first[:1]}{last[:1]}".upper() or "U"
+    full_name = f"{first} {last}".strip() or "Utilisateur"
 
+    with st.sidebar:
 
-st.set_page_config(
-    page_title="waste-sorter",
-    page_icon="images/favicon.png",
-    layout="wide",
-    initial_sidebar_state="auto",
-)
+        st.markdown("""
+        <div class="logo-horizontal">
+            <span class="logo-icon-horizontal">♻</span>
+            <div class="logo-title-horizontal">waste-sorter</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-load_css()
-init_session()
-load_config()
+        st.divider()
 
+        st.markdown(f"""
+        <div class="sidebar-user">
+            <div class="sidebar-avatar">{initials}</div>
+            <div>
+                <div class="sidebar-name">{full_name}</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
-if not st.session_state.authenticated:
-    page_login()
-else:
-    render_sidebar()
+        nav_items = [
+            ("scanner", "Scanner"),
+            ("history", "Historique"),
+            ("profile", "Mon compte"),
+            ("cgu", "CGU"),
+            ("politique", "Politique"),
+        ]
 
-    page = st.session_state.get("active_page", "scanner")
+        for key, label in nav_items:
+            if st.button(label, key=f"nav_{key}", use_container_width=True):
+                st.session_state.active_page = key
+                st.rerun()
 
-    if page == "scanner":
-        page_scanner()
-    elif page == "history":
-        page_history()
-    elif page == "profile":
-        page_profile()
-    elif page == "cgu":
-        page_cgu()
-    elif page == "politique":
-        page_politique()
+        st.divider()
+
+        if st.button("Déconnexion", key="logout", use_container_width=True):
+            do_logout()
+            st.rerun()

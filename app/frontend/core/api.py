@@ -2,6 +2,7 @@ import requests
 import streamlit as st
 import os
 
+
 API_URL = os.getenv("API_URL")
 
 

@@ -1,4 +1,8 @@
 import streamlit as st
+import time
+
+from core.api import api_put, api_delete
+from ui.auth import do_logout
 
 def page_profile():
     st.subheader("Mon compte")
