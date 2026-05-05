@@ -1,19 +1,3 @@
-"""
-Users router — CRUD operations for user management.
-"""
-
-"""
-Users router.
-POST /register          — create account
-POST /login             — authenticate
-POST /logout            — logout (client-side token invalidation)
-GET  /                  — list all users (admin)
-GET  /{id}              — get one user
-PUT  /{id}              — update user profile
-DELETE /{id}            — delete user account
-GET  /{id}/history      — get all predictions made by user
-"""
-
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -22,13 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
 
-from app.backend.api.schemas.schemas import (
-    TokenOut,
-    UserCreate,
-    UserLogin,
-    UserOut,
-    UserUpdate,
-)
+from app.backend.api.schemas.schemas import TokenOut, UserCreate, UserLogin, UserOut, UserUpdate
 from app.backend.db.session import get_db
 from app.backend.models.tables import Image, Prediction, User, WasteInfo
 

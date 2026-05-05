@@ -1,5 +1,3 @@
-"""Waste router — expose waste types and waste info records."""
-
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select

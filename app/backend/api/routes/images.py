@@ -4,7 +4,6 @@ POST /api/v1/images/upload  →  saves image, runs prediction, stores result.
 GET  /api/v1/images/{id}    →  returns image metadata.
 """
 
-import shutil
 import uuid
 import os
 from pathlib import Path
@@ -122,7 +121,7 @@ async def delete_image(image_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
 @router.get("/{image_id}/file", summary="Get image file by ID")
 async def get_image_file(image_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     """Return the image file based on its ID."""
-    
+
     result = await db.execute(select(Image).where(Image.id == image_id))
     image = result.scalar_one_or_none()
 
