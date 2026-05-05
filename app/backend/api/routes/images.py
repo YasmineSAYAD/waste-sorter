@@ -1,9 +1,3 @@
-"""
-Images router — handles image upload and triggers ML inference.
-POST /api/v1/images/upload  →  saves image, runs prediction, stores result.
-GET  /api/v1/images/{id}    →  returns image metadata.
-"""
-
 import uuid
 import os
 from pathlib import Path
@@ -26,8 +20,11 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp"}
 
-
-@router.post("/upload", response_model=PredictionResult, summary="Upload image and classify waste")
+@router.post(
+    "/upload",
+    response_model=PredictionResult,
+    summary="Upload image and classify waste"
+)
 async def upload_image(
     user_id: str,
     file: UploadFile = File(...),
@@ -43,7 +40,10 @@ async def upload_image(
     """
     # Validate file type
     if file.content_type not in ALLOWED_TYPES:
-        raise HTTPException(status_code=400, detail=f"File type not allowed: {file.content_type}")
+        raise HTTPException(
+            status_code=400,
+            detail=f"File type not allowed: {file.content_type}"
+        )
 
     # Validate file size
     contents = await file.read()

@@ -1,19 +1,18 @@
 import uuid
-
 from fastapi import APIRouter, Depends, HTTPException
 from passlib.context import CryptContext
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
 
-from app.backend.api.schemas.schemas import TokenOut, UserCreate, UserLogin, UserOut, UserUpdate
+from app.backend.api.schemas.schemas import (
+    TokenOut, UserCreate, UserLogin, UserOut, UserUpdate
+)
 from app.backend.db.session import get_db
 from app.backend.models.tables import Image, Prediction, User, WasteInfo
 
-
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 
 @router.post(
     "/register",
@@ -21,7 +20,6 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
     status_code=201,
     summary="Register a new user",
 )
-@router.post("/register", response_model=UserOut, status_code=201, summary="Register a new user")
 async def register(payload: UserCreate, db: AsyncSession = Depends(get_db)):
     """Create a new user account with hashed password."""
     # Check email not already taken
@@ -41,8 +39,11 @@ async def register(payload: UserCreate, db: AsyncSession = Depends(get_db)):
     await db.refresh(user)
     return user
 
-
-@router.post("/login", response_model=TokenOut, summary="Login and get access token")
+@router.post(
+    "/login",
+    response_model=TokenOut,
+    summary="Login and get access token",
+)
 async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
     """Authenticate user — returns user info and a simple token."""
     result = await db.execute(select(User).where(User.email == payload.email))
@@ -63,7 +64,6 @@ async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
         },
     }
 
-
 @router.post("/logout", summary="Logout")
 async def logout():
     """
@@ -72,13 +72,11 @@ async def logout():
     """
     return {"message": "Logged out successfully"}
 
-
 @router.get("/", response_model=list[UserOut], summary="List all users (admin)")
 async def list_users(db: AsyncSession = Depends(get_db)):
     """Return all registered users."""
     result = await db.execute(select(User))
     return result.scalars().all()
-
 
 @router.get("/{user_id}", response_model=UserOut, summary="Get user by ID")
 async def get_user(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
@@ -88,8 +86,11 @@ async def get_user(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-
-@router.put("/{user_id}", response_model=UserOut, summary="Update user profile")
+@router.put(
+    "/{user_id}",
+    response_model=UserOut,
+    summary="Update user profile",
+)
 async def update_user(
     user_id: uuid.UUID,
     payload: UserUpdate,
@@ -121,7 +122,6 @@ async def update_user(
     await db.refresh(user)
     return user
 
-
 @router.delete("/{user_id}", status_code=204, summary="Delete user account")
 async def delete_user(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     """Permanently delete a user and all their associated data (RGPD)."""
@@ -142,7 +142,6 @@ async def delete_user(user_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
 
     await db.delete(user)
     await db.commit()
-
 
 @router.get(
     "/{user_id}/history",
@@ -176,7 +175,9 @@ async def get_user_history(
             "image_id": str(img.id),
             "image_path": img.image_path,
             "uploaded_at": img.uploaded_at.isoformat() if img.uploaded_at else None,
-            "predicted_class": img.waste_info.waste_type.label_key if img.waste_info and img.waste_info.waste_type else None,
+            "predicted_class": img.waste_info.waste_type.label_key
+            if img.waste_info and img.waste_info.waste_type
+            else None,
             "waste_type": img.waste_info.type_name if img.waste_info else None,
             "recyclable": img.waste_info.recyclable if img.waste_info else None,
             "bac": img.waste_info.bac if img.waste_info else None,

@@ -35,7 +35,10 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="waste-sorter API",
-    description="AI-powered waste classification — classifies images into 11 waste categories.",
+    description=(
+        "AI-powered waste classification — "
+        "classifies images into 11 waste categories."
+    ),
     version="1.0.0",
     docs_url="/docs",        # Swagger UI
     redoc_url="/redoc",      # ReDoc UI
@@ -57,7 +60,11 @@ Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 # ── Routers ───────────────────────────────────────────────────────
 app.include_router(users.router,       prefix="/api/v1/users",       tags=["users"])
 app.include_router(images.router,      prefix="/api/v1/images",      tags=["images"])
-app.include_router(predictions.router, prefix="/api/v1/predictions", tags=["predictions"])
+app.include_router(
+    predictions.router,
+    prefix="/api/v1/predictions",
+    tags=["predictions"]
+)
 app.include_router(waste.router,       prefix="/api/v1/waste",       tags=["waste"])
 
 

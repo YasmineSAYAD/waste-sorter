@@ -1,5 +1,3 @@
-"""Predictions router — read prediction records."""
-
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -11,8 +9,11 @@ from app.backend.models.tables import Prediction
 
 router = APIRouter()
 
-
-@router.get("/{prediction_id}", response_model=PredictionOut, summary="Get prediction by ID")
+@router.get(
+    "/{prediction_id}",
+    response_model=PredictionOut,
+    summary="Get prediction by ID",
+)
 async def get_prediction(prediction_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     """Return a single prediction record by UUID."""
     prediction = await db.get(Prediction, prediction_id)
