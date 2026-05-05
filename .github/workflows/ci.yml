@@ -2,17 +2,110 @@ name: CI
 
 on:
   push:
-    paths:
-      - "model/notebooks/**"
-      - "model/src/**"
+    branches: ["**"]
   pull_request:
-    paths:
-      - "model/notebooks/**"
-      - "model/src/**"
+    branches: [main]
+
+# ─────────────────────────────────────────────────────────────────
+# BACKEND + FRONTEND JOBS
+# ─────────────────────────────────────────────────────────────────
 
 jobs:
-  notebooks:
+
+  # ── Lint + Type check — Backend ───────────────────────────────────
+  lint-backend:
+    name: Lint & Type check — Backend
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dev dependencies
+        run: pip install ruff mypy
+
+      - name: Ruff — lint (E, F, W)
+        run: ruff check app/backend/ --select E,F,W
+
+      - name: Mypy — type check
+        run: mypy app/backend/ --ignore-missing-imports
+
+  # ── Lint — Frontend Streamlit ─────────────────────────────────────
+  lint-frontend:
+    name: Lint — Frontend Streamlit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install linting tools
+        run: pip install ruff mypy
+
+      - name: Ruff — lint app.py (E, F, W)
+        run: ruff check app/frontend/ --select E,F,W
+
+      - name: Mypy — type check 
+        run: mypy app/frontend/ --ignore-missing-imports
+
+  # ── Security scan ─────────────────────────────────────────────────
+  security:
+    name: Security scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install security tools
+        run: pip install bandit safety
+
+      - name: Bandit — backend scan
+        run: bandit -r app/backend/ -ll -x app/backend/tests/
+
+      - name: Bandit — frontend scan
+        run: bandit -r app/frontend/ -ll
+
+      - name: Safety — dependency vulnerabilities
+        run: safety check --file app/backend/requirements.txt
+
+      - name: Gitleaks — secrets scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Tests — Backend ───────────────────────────────────────────────
+  tests-backend:
+    name: Pytest — Backend
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test_db
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      MODEL_PATH: model/saved/yolo_best.pt
 
     steps:
       - uses: actions/checkout@v4
@@ -22,16 +115,123 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
+        run: |
+          pip install -r app/backend/requirements.txt
+          pip install pytest pytest-asyncio httpx pytest-cov
+
+      - name: Pytest with coverage
+        run: |
+          pytest app/backend/tests/ \
+            --cov=app/backend \
+            --cov-report=term-missing \
+            --cov-fail-under=70 \
+            -v
+
+  # ── Tests — Frontend Streamlit ────────────────────────────────────
+  tests-frontend:
+    name: Pytest — Frontend Streamlit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install streamlit requests pytest pytest-mock
+
+      - name: Run frontend tests
+        run: pytest app/frontend/tests/ -v
+
+# ─────────────────────────────────────────────────────────────────
+# ML JOBS — notebooks + src
+# ─────────────────────────────────────────────────────────────────
+
+  # ── Notebooks — lint & outputs check ─────────────────────────────
+  notebooks:
+    name: Notebooks — lint & outputs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install notebook tools
         run: pip install nbstripout nbqa ruff
 
       - name: Check notebooks have no outputs
         run: |
-          nbstripout --verify model/notebooks/*.ipynb
+          for nb in model/notebooks/*.ipynb; do
+            nbstripout --verify "$nb" && echo "$nb — OK"
+          done
 
-      - name: Lint notebooks and Python scripts
+      - name: Ruff — lint notebooks (E, F, W)
+        run: nbqa ruff model/notebooks/ --select E,F,W --ignore E501
+
+      - name: Ruff — lint model/src scripts (E, F, W)
+        run: ruff check model/src/*.py --select E,F,W
+
+  # ── Tests — ML pipeline ───────────────────────────────────────────
+  tests-ml:
+    name: Pytest — ML pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ML dependencies
         run: |
-          # Lint notebooks
-          nbqa ruff model/notebooks/ --select E,F,W 
-          
-          # Lint Python files in src
-          ruff check model/src/*.py --select E,F,W 
+          pip install torch torchvision \
+            --index-url https://download.pytorch.org/whl/cpu
+          pip install pytest pillow scikit-learn numpy
+
+      - name: Pytest — preprocessing + pipeline
+        run: pytest model/tests/ -v --tb=short
+
+# ─────────────────────────────────────────────────────────────────
+# SEMANTIC RELEASE 
+# ─────────────────────────────────────────────────────────────────
+
+  release:
+    name: Semantic release
+    runs-on: ubuntu-latest
+    needs:
+      - lint-backend
+      - lint-frontend
+      - security
+      - tests-backend
+      - tests-frontend
+      - notebooks
+      - tests-ml
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git
+
+      - name: Run semantic-release
+        run: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
