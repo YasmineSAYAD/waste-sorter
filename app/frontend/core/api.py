@@ -39,5 +39,9 @@ def handle_response(r):
         return r.json(), None
     try:
         return None, r.json().get("detail", r.text)
-    except:
-        return None, r.text
+    except requests.exceptions.RequestException as e:
+        return None, f"RequestException: {str(e)}"
+    except ValueError:
+        return None, f"Invalid JSON response: {r.text}"
+    except Exception as e:
+        return None, f"An unexpected error occurred: {str(e)}"
