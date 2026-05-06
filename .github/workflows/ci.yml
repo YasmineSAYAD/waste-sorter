@@ -33,29 +33,27 @@ jobs:
         run: mypy app/backend/ --ignore-missing-imports
 
   # ── Lint — Frontend Streamlit ─────────────────────────────────────
-lint-frontend:
-  name: Lint — Frontend Streamlit
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
+  lint-frontend:
+    name: Lint — Frontend Streamlit
+    runs-on: ubuntu-latest
 
-    - uses: actions/setup-python@v5
-      with:
-        python-version: "3.12"
+    steps:
+      - uses: actions/checkout@v4
 
-    - name: Install linting tools
-      run: pip install ruff mypy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-    - name: Ruff — lint app.py (E, F, W)
-      run: ruff check app/frontend/ --select E,F,W
+      - name: Install linting tools
+        run: pip install ruff mypy
 
-    - name: Install missing types for mypy
-      run: |
-        pip install mypy
-        mypy --install-types
+      - name: Ruff — lint app.py (E, F, W)
+        run: ruff check app/frontend/ --select E,F,W
 
-    - name: Mypy — type check
-      run: mypy app/frontend/ --ignore-missing-imports
+      - name: Mypy — type check
+        run: |
+          mypy app/frontend/ --ignore-missing-imports
+          mypy --install-types
 
   # ── Security scan ─────────────────────────────────────────────────
   security:
