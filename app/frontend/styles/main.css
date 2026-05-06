@@ -16,6 +16,7 @@ header {
     padding-bottom: 2rem;
 }
 
+/* button, checkbox, radio button */
 button[data-testid="stBaseButton-primaryFormSubmit"],
 .st-c2 {
     background-color: #4CAF50 !important;
