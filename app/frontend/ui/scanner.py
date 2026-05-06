@@ -27,7 +27,7 @@ def render_result(result: dict):
     st.markdown(
         f'<div class="info-card">'
         f'<div class="info-card-title">'
-        f'<i class="fas fa-trash" style="color: #FFEB3B;"></i> Bac recommandé'
+        f'<i class="fas fa-trash"></i> Bac recommandé'
         f'</div>'
         f'<div class="info-card-value">{bac}</div></div>',
         unsafe_allow_html=True,
@@ -45,7 +45,7 @@ def render_result(result: dict):
     if advice:
         st.markdown(
         f'<div class="advice-card">'
-        f'<i class="fas fa-lightbulb"></i>'
+        f'<i class="fas fa-lightbulb" style="color: #FFEB3B;"></i>'
         f'<strong> Conseil :</strong> {advice}</div>',
         unsafe_allow_html=True,
     )
