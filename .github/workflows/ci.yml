@@ -103,7 +103,7 @@ jobs:
       POSTGRES_DB: test_db
       POSTGRES_HOST: localhost
       POSTGRES_PORT: 5432
-      MODEL_PATH: model/saved/yolo_best.pt
+      MODEL_PATH: model/saved/yolo_final/train/weights/best.pt
 
     steps:
       - uses: actions/checkout@v4
