@@ -22,7 +22,7 @@ class Settings(BaseSettings):
         )
 
     # ── ML Model ──────────────────────────────────────────────────
-    MODEL_PATH: str = Path("model/saved/yolo_final/train/weights/best.pt")
+    MODEL_PATH: str = str(Path("model/saved/yolo_final/train/weights/best.pt"))
     MODEL_VERSION: str = "yolov8n-cls-v1"
     CONFIDENCE_THRESHOLD: float = 0.5
 
