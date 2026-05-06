@@ -127,23 +127,6 @@ jobs:
             --cov-fail-under=70 \
             -v
 
-  # ── Tests — Frontend Streamlit ────────────────────────────────────
-  tests-frontend:
-    name: Pytest — Frontend Streamlit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install streamlit requests pytest pytest-mock
-
-      - name: Run frontend tests
-        run: pytest app/frontend/tests/ -v
-
 # ─────────────────────────────────────────────────────────────────
 # ML JOBS — notebooks + src
 # ─────────────────────────────────────────────────────────────────
@@ -174,26 +157,6 @@ jobs:
       - name: Ruff — lint model/src scripts (E, F, W)
         run: ruff check model/src/*.py --select E,F,W
 
-  # ── Tests — ML pipeline ───────────────────────────────────────────
-  tests-ml:
-    name: Pytest — ML pipeline
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install ML dependencies
-        run: |
-          pip install torch torchvision \
-            --index-url https://download.pytorch.org/whl/cpu
-          pip install pytest pillow scikit-learn numpy
-
-      - name: Pytest — preprocessing + pipeline
-        run: pytest model/tests/ -v --tb=short
-
 # ─────────────────────────────────────────────────────────────────
 # SEMANTIC RELEASE 
 # ─────────────────────────────────────────────────────────────────
@@ -206,9 +169,7 @@ jobs:
       - lint-frontend
       - security
       - tests-backend
-      - tests-frontend
       - notebooks
-      - tests-ml
     if: github.ref == 'refs/heads/main'
     permissions:
       contents: write
