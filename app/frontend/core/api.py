@@ -31,8 +31,9 @@ def api_delete(endpoint: str):
 
 
 def get_headers():
-    return {"Authorization": f"Bearer {st.session_state.token}"} if st.session_state.token else {}
-
+    return {
+        "Authorization": f"Bearer {st.session_state.token}"
+    } if st.session_state.token else {}
 
 def handle_response(r):
     if r.ok:

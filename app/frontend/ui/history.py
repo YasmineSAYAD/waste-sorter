@@ -36,10 +36,14 @@ def page_history():
 
         st.markdown(f"""
         <div class="history-item">
-            <img src="{image_url}" style="width: 50px; height: auto; margin-right:2%;" />
+            <img src="{image_url}" style="width: 50px; height: auto; margin-right:2%;"/>
             <span style="font-size:1.1rem; color:{color};">{icon}</span>
             <strong style="margin-left:0.5rem">{label}</strong>
-            <span style="color:#6b7280;font-size:0.82rem;margin-left:0.5rem">— {date} · {bac} / {alt}</span>
-            <span style="float:right;color:{color};font-weight:600;font-size:0.85rem">{confidence*100:.0f}%</span>
+            <span style="color:#6b7280;font-size:0.82rem;margin-left:0.5rem">
+                — {date} · {bac} / {alt}
+            </span>
+            <span style="float:right;color:{color};font-weight:600;font-size:0.85rem">
+                {confidence*100:.0f}%
+            </span>
         </div>
         """, unsafe_allow_html=True)

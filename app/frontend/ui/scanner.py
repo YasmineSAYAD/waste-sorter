@@ -25,22 +25,30 @@ def render_result(result: dict):
     """, unsafe_allow_html=True)
 
     st.markdown(
-        f'<div class="info-card"><div class="info-card-title"><i class="fas fa-trash"></i> Bac recommandé</div>'
+        f'<div class="info-card">'
+        f'<div class="info-card-title">'
+        f'<i class="fas fa-trash" style="color: #FFEB3B;"></i> Bac recommandé'
+        f'</div>'
         f'<div class="info-card-value">{bac}</div></div>',
         unsafe_allow_html=True,
     )
 
     st.markdown(
-        f'<div class="info-card"><div class="info-card-title"><i class="fas fa-exchange-alt"></i> Alternative</div>'
+        f'<div class="info-card">'
+        f'<div class="info-card-title">'
+        f'<i class="fas fa-exchange-alt"></i> Alternative'
+        f'</div>'
         f'<div class="info-card-value">{alt}</div></div>',
         unsafe_allow_html=True,
     )
 
     if advice:
         st.markdown(
-            f'<div class="advice-card"><i class="fas fa-lightbulb"></i> <strong>Conseil :</strong> {advice}</div>',
-            unsafe_allow_html=True,
-        )
+        f'<div class="advice-card">'
+        f'<i class="fas fa-lightbulb"></i>'
+        f'<strong> Conseil :</strong> {advice}</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def page_scanner():
@@ -75,7 +83,9 @@ def page_scanner():
                 <div class="upload-hint">
                     <p style="font-size:2.5rem"><i class="fas fa-folder"></i></p>
                     <p>Glissez une image ici<br>ou cliquez pour sélectionner</p>
-                    <p style="font-size:0.75rem;margin-top:0.5rem">JPG · PNG · WEBP · max 10MB</p>
+                    <p style="font-size:0.75rem;margin-top:0.5rem">
+                        JPG · PNG · WEBP · max 10MB
+                    </p>
                 </div>
                 """, unsafe_allow_html=True)
         else:
@@ -93,7 +103,12 @@ def page_scanner():
 
         if image_data:
             user_id = st.session_state.user.get("id")
-            if st.button("Trier Vos Déchets", use_container_width=True, type="primary",  key="analyser"):
+            if st.button(
+                "Trier Vos Déchets",
+                use_container_width=True,
+                type="primary",
+                key="analyser"
+            ):
                 fname, fdata, ftype = image_data
                 params = {"user_id": user_id}
                 with st.spinner("Analyse en cours..."):

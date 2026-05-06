@@ -19,7 +19,9 @@ def page_profile():
             fn = st.text_input("Prénom", value=user.get("first_name", ""))
             ln = st.text_input("Nom", value=user.get("last_name", ""))
             em = st.text_input("Email", value=user.get("email", ""))
-            st.markdown("**Nouveau mot de passe** *(laisser vide pour ne pas modifier)*")
+            st.markdown(
+                "**Nouveau mot de passe** *(laisser vide pour ne pas modifier)*"
+            )
             new_pwd = st.text_input(
                 "Mot de passe", type="password", placeholder="8 caractères minimum"
             )
@@ -60,7 +62,8 @@ def page_profile():
     with col2:
         st.markdown("#### Supprimer mon compte")
         st.warning(
-            "! Action irréversible. Toutes vos données seront supprimées définitivement."
+            "! Action irréversible. "
+            "Toutes vos données seront supprimées définitivement."
         )
 
         if st.checkbox("Je comprends que cette action est irréversible"):
