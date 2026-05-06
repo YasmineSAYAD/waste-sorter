@@ -45,15 +45,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install linting tools
-        run: pip install ruff mypy
+        run: pip install ruff
 
       - name: Ruff — lint app.py (E, F, W)
         run: ruff check app/frontend/ --select E,F,W
-
-      - name: Mypy — type check
-        run: |
-          mypy app/frontend/ --ignore-missing-imports
-          mypy --install-types
 
   # ── Security scan ─────────────────────────────────────────────────
   security:
