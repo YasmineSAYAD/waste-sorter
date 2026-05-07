@@ -1,0 +1,15 @@
+{
+  "model": "mobilenet_v2",
+  "test_accuracy": 0.8632,
+  "test_f1_macro": 0.8628,
+  "best_val_loss": 0.3394,
+  "hyperparams": {
+    "lr": 0.00016738085788752134,
+    "dropout": 0.15579754426081674,
+    "batch_size": 64,
+    "weight_decay": 0.00037183641805732076,
+    "freeze_backbone": false,
+    "optimizer": "Adam",
+    "val_loss": 0.3459
+  }
+}
