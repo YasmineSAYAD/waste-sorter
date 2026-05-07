@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Étape pour convertir le nom du repository en minuscules
+      # convert the repository name to lowercase
       - name: Set image tag in lowercase
         id: tag
         run: |
