@@ -1,0 +1,60 @@
+[33meba0e27[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/app-fullstack[m[33m, [m[1;31morigin/feat/app-fullstack[m[33m)[m fix(ci): convert GitHub repository name to lowercase for Docker tags
+[33me5bdae2[m fix(notebooks): verify and clean notebooks with nbstripout
+[33m6d4a925[m perf(fix): enhance performance and apply various fixes
+[33m5395dd3[m fix(linter): resolve backend issues reported by linter
+[33m29b4e9c[m fix(tests): resolve pytest errors and improve test setup
+[33m1e52908[m feat(monitoring): add Prometheus and Grafana monitoring setup
+[33mfc1bac7[m Fix model path
+[33m0bc68c5[m Fix GitHub Actions workflow for frontend linting: separate mypy type check and type installation steps
+[33m1180f41[m Fix GitHub Actions workflow for frontend linting: separate mypy type check and type installation steps
+[33m4ffb54a[m Fix mypy type checks and correct database session type annotations
+[33m1b7a00c[m Fix GitHub Actions workflow for frontend linting: separate mypy type check and type installation steps
+[33m40aeb2a[m Fix mypy type checks and correct database session type annotations in backend
+[33m8faf6dc[m fix(frontend): clean imports and style issues with Ruff linter
+[33m09be8f4[m Update CI configuration in ci.yml
+[33md147da3[m fix(frontend): clean imports and style issues with Ruff linter
+[33m830ad38[m fix(backend): clean imports and style issues with Ruff linter
+[33med8cb27[m fix: update ruff configuration in pyproject.toml to resolve TOML parsing error
+[33m96ac5f5[m fix(frontend): clean imports and style issues with Ruff linter
+[33m7744a98[m fix(frontend): update imports and UI components, fix session_state handling
+[33m26cb1fa[m fix(backend): clean imports and style issues with Ruff linter
+[33m350287c[m chore: add pyproject.toml for project dependencies and configuration
+[33mb0bb949[m ci(cd): implement CI/CD with GitHub Actions — multi-service Docker build, registry push, security scan, production deploy
+[33m682351f[m feat(app): add fullstack app —db PostgreSQL, FastAPI backend, Streamlit frontend, Docker
+[33m6d81077[m[33m ([m[1;31morigin/results/cnn[m[33m, [m[1;32mresults/cnn[m[33m)[m chore: fix nbqa errors and clean up code
+[33m5eadefe[m fix: resolve merge conflicts
+[33m9c289e6[m chore: clean Jupyter notebooks by removing outputs and metadata
+[33m4bfc406[m Delete model/data/yolo/val.cache
+[33me73452f[m Delete model/data/yolo/train.cache
+[33m3bd69c1[m Delete model/data/yolo/test.cache
+[33mf8af025[m chore: remove yolo cache files from tracking
+[33mabf9931[m results: CNN scratch
+[33m7c2a87c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #4 from YasmineSAYAD/feat/dataset
+[33m5cf3e9b[m Merge pull request #5 from YasmineSAYAD/feat/cnn-scratch
+[33m9e72a9d[m[33m ([m[1;31morigin/feat/cnn-scratch[m[33m)[m style: reformat notebook to satisfy Ruff E,F,W rules
+[33m61a7411[m[33m ([m[1;31morigin/feat/dataset[m[33m)[m feat: add  dataset via git lfs
+[33ma85103c[m chore: configure git lfs for dataset images
+[33md9b2253[m[33m ([m[1;31morigin/feat/cnn-yolo[m[33m)[m style: reformat notebook to satisfy Ruff E,F,W rules
+[33mb95e760[m feat: add YOLOv8 classification with Optuna and MLflow
+[33m9f13f77[m[33m ([m[1;31morigin/feat/cnn-mobilenet[m[33m)[m style: reformat notebook to satisfy Ruff E,F,W rules
+[33mdee5282[m feat: add MobileNetV2 transfer learning with 2-phase fine-tuning
+[33m11ca062[m feat: add CNN scratch with Optuna HPO and MLflow tracking
+[33m8fe07ba[m Merge pull request #3 from YasmineSAYAD/feat/preprocessing
+[33m5e7cb3c[m[33m ([m[1;31morigin/feat/preprocessing[m[33m)[m fix: apply ruff fixes for style and formatting issues in notebooks files
+[33mf95cad4[m fix: apply ruff fixes for style and formatting issues in notebooks files
+[33m4c3b0b0[m fix: apply ruff fixes for style and formatting issues in notebooks files
+[33m5715ba4[m fix: apply ruff fixes for style and formatting issues in Python files
+[33mb19ba24[m feat: add WasteDataset and dataloaders with augmentation
+[33mc46bfb6[m Merge pull request #2 from YasmineSAYAD/feat/eda-notebook
+[33m55de02c[m[33m ([m[1;31morigin/feat/eda-notebook[m[33m)[m fix: manually fix ambiguous variable names and apply automated linting fixes
+[33mf604bac[m fix: manually fix ambiguous variable names and apply automated linting fixes
+[33m6999134[m fix: manually fix ambiguous variable names and apply automated linting fixes
+[33m11a5bb6[m fix: manually fix ambiguous variable names and apply automated linting fixes
+[33ma1dbc65[m fix: manually fix ambiguous variable names and apply automated linting fixes
+[33m1c98d10[m fix: manually fix ambiguous variable names and apply automated linting fixes
+[33m3041570[m feat: add EDA notebook with dataset exploration and splits
+[33m864060a[m Merge pull request #1 from YasmineSAYAD/ci/lint-setup
+[33m6395e14[m[33m ([m[1;31morigin/ci/lint-setup[m[33m)[m ci: add lint and type check workflow
+[33m2d3b607[m ci: add lint and type check workflow
+[33m92061a2[m chore:  project structure
+[33me99068e[m Initial commit
