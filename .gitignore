@@ -30,14 +30,6 @@ ipython_config.py
 # ===========================
 # Models
 # ===========================
-model/saved/
-*.h5
-*.pt
-*.pth
-*.onnx
-*.pkl
-*.joblib
-*.pb
 
 # Data
 model/data/raw/
