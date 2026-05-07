@@ -36,8 +36,8 @@ jobs:
           file: app/backend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ toLower(github.repository) }}/backend:latest
-            ghcr.io/${{ toLower(github.repository) }}/backend:${{ steps.tag.outputs.TAG }}
+            ghcr.io/${{ github.repository }}/backend:latest
+            ghcr.io/${{ github.repository }}/backend:${{ steps.tag.outputs.TAG }}
 
       - name: Build & push frontend
         uses: docker/build-push-action@v5
@@ -46,8 +46,8 @@ jobs:
           file: app/frontend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ toLower(github.repository) }}/frontend:latest
-            ghcr.io/${{ toLower(github.repository) }}/frontend:${{ steps.tag.outputs.TAG }}
+            ghcr.io/${{ github.repository }}/frontend:latest
+            ghcr.io/${{ github.repository }}/frontend:${{ steps.tag.outputs.TAG }}
 
   # ── Security scan on Docker images ──────────────────────────────
   trivy:
@@ -58,7 +58,7 @@ jobs:
       - name: Scan backend image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ghcr.io/${{ toLower(github.repository) }}/backend:latest
+          image-ref: ghcr.io/${{ github.repository }}/backend:latest
           format: table
           severity: HIGH,CRITICAL
           exit-code: 1
