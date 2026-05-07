@@ -10,12 +10,16 @@ class Settings(BaseSettings):
     # ── Database ──────────────────────────────────────────────────
     POSTGRES_USER: str = "waste_sorter"
     POSTGRES_PASSWORD: str = "G7vkP9Lm2Qx5ZrT8nBs3"
-    POSTGRES_DB: str = "waste_sorter_db"
+    POSTGRES_DB: str = "waste_sorter"
     POSTGRES_HOST: str = "postgres"
     POSTGRES_PORT: int = 5432
 
+    TESTING: bool = False
+
     @property
     def DATABASE_URL(self) -> str:
+        if self.TESTING:
+            return "sqlite+aiosqlite:///:memory:"
         return (
             f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
             f"@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
