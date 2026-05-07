@@ -1,0 +1,100 @@
+services:
+
+  # ── PostgreSQL ───────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── FastAPI backend ──────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: app/backend/Dockerfile
+    restart: on-failure 
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./model/saved:/app/model/saved
+      - ./uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── React frontend ───────────────────────────────────────────────
+  frontend:
+    build:
+      context: app/frontend
+      dockerfile: Dockerfile
+    environment:
+      - API_URL=http://backend:8000
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+
+  # ── MLflow ──────────────────────────────────────────────────────
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./model/mlruns:/mlruns
+    command: >
+      mlflow server
+      --backend-store-uri /mlruns
+      --default-artifact-root /mlruns
+      --host 0.0.0.0
+
+  # ── Prometheus ───────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=15d"
+
+  # ── Grafana ──────────────────────────────────────────────────────
+   
+  grafana:
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+    depends_on:
+      - prometheus
+
+volumes:
+  postgres_data:
+  grafana_data:

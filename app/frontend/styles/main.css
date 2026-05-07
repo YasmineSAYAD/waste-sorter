@@ -1,0 +1,437 @@
+html,
+body, 
+[class*="css"] { 
+    font-family: 'Inter',
+    sans-serif;
+}
+
+#MainMenu,
+footer, 
+header {
+    visibility: hidden;
+}
+
+.block-container {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* button, checkbox, radio button */
+button[data-testid="stBaseButton-primaryFormSubmit"],
+.st-c2 {
+    background-color: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+}
+
+button[data-testid="stBaseButton-primaryFormSubmit"]:hover {
+    background-color: #45a049 !important;  
+}
+
+/* ── Sidebar ── */
+[data-testid="stSidebar"] {
+    background-color: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+    min-width: 240px !important;
+    max-width: 240px !important;
+}
+
+[data-testid="stSidebar"] .block-container {
+    padding-top: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+[data-testid="stSidebarHeader"] {
+    margin-bottom: 0 !important;
+    height: 2.5rem !important;
+}
+
+/* Sidebar user card */
+.sidebar-user {
+    background: #f8fafc;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 18%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sidebar-avatar {
+    width: 30px;
+    height: 30px;
+    background: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700; 
+    color: white;
+    margin-top: auto;
+    margin-right: 5%;
+    margin-bottom: 0.6rem;
+    margin-left: 5%;
+}
+
+.sidebar-name {
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    color: #1a1a2e;
+    margin-bottom: 0.15rem;
+}
+
+.sidebar-role {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: capitalize;
+}
+
+/* Sidebar nav links */
+.sidebar-nav {
+    margin-bottom: 1rem;
+}
+
+.sidebar-nav-item {
+    display: flex;
+    align-items: flex-start !important;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.sidebar-nav-item:hover { 
+    background: #e2e8f0;
+}
+
+.sidebar-nav-item.active {
+    background: #e2e8f0;
+    font-weight: 600;
+}
+
+.sidebar-nav-icon { 
+    font-size: 1rem; 
+    width: 20px; 
+    text-align: center; 
+}
+
+/* Buttons sidebar */
+[data-testid="stSidebar"] .stButton > button {
+    background: none !important;
+    border: none !important;
+    color: #212121 !important;
+    font-weight: 500 !important;
+    width: 100% !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.15s !important;
+}
+
+[data-testid="stSidebar"] .stButton {
+    margin-bottom: 0px !important;
+}
+
+[data-testid="stSidebar"] .stButton > button {
+    min-height: unset !important;
+    line-height: 1.2 !important;
+}
+
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: #e2e8f0 !important;
+}
+
+/* Scanner icons */
+div.st-key-nav_scanner button::before {
+    content: "\f002";
+}
+
+/* Historique */
+div.st-key-nav_history button::before {
+    content: "\f1da";
+}
+
+/* Profil */
+div.st-key-nav_profile button::before {
+    content: "\f007";
+}
+
+/* politique */
+div.st-key-nav_politique button::before {
+    content: "\f3ed";
+}
+
+/* cgu */
+div.st-key-nav_cgu button::before {
+    content: "\f15c";
+}
+
+/* ── Legal pages ── */
+.legal-section {
+    background: #f8fafc; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem; 
+    margin-bottom: 1.25rem;
+}
+
+.legal-section h4 { 
+    color: #1a1a2e; 
+    margin-bottom: 0.75rem; 
+    font-size: 1rem; 
+}
+
+.legal-section p, .legal-section li { 
+    color: #374151; 
+    font-size: 0.9rem; 
+    line-height: 1.7; 
+}
+
+.legal-badge {
+    display: inline-block; 
+    background: #e8f5e9; 
+    color: #2e7d32;
+    border: 1px solid #a5d6a7; 
+    border-radius: 20px;
+    padding: 3px 12px; 
+    font-size: 0.78rem; 
+    font-weight: 600; 
+    margin-bottom: 1.5rem;
+}
+
+/* icon style */
+div.stButton button::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #212121;
+}
+
+/* Alignement bouton */
+div.stButton button,
+div.st-key-logout button{
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* logout icon */
+div.st-key-logout button::before {
+    content: "\f2f5";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 1px !important;
+    color: #212121;
+}
+
+/* analyser button */
+div.st-key-analyser button {
+    display: flex !important;
+    align-items: center !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    border: none !important;
+    background-color: #4CAF50;
+    color: white;
+}
+
+div.st-key-analyser button:hover {
+    background-color: #388E3C !important;
+}
+
+/* ── Logo ── */
+.logo {
+    text-align: center;
+    color: #4CAF50;
+}
+
+.logo-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.logo-sub {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.logo-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212121;
+    letter-spacing: -0.03em;
+}
+
+.logo-horizontal {
+    color: #4CAF50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon-horizontal {
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.logo-title-horizontal {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #212121;
+    letter-spacing: -0.03em;
+    display: inline-block;
+}
+
+/* ── Auth ── */
+.rgpd-banner {
+    background: #f0f9ff; 
+    border: 1px solid #bae6fd; 
+    border-radius: 10px;
+    padding: 1rem 1.25rem; 
+    font-size: 0.82rem; 
+    color: #0369a1;
+    margin: 1rem 0; 
+    line-height: 1.6;
+}
+
+/* ── Result ── */
+.result-header {
+    border-radius: 16px; 
+    padding: 1rem; 
+    color: white;
+    margin-bottom: 1.5rem; 
+    text-align: center;
+}
+
+.result-class { 
+    font-size: 2rem;
+    font-weight: 700; 
+    margin: 0.4rem 0;
+}
+
+.badge-rec {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem; 
+    font-weight: 600; 
+    margin-top: 0.75rem; 
+    color: white;
+}
+
+/* ── Cards ── */
+.info-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.info-card-title {
+    font-size: 0.72rem; 
+    font-weight: 600; 
+    color: #6b7280; 
+    text-transform: uppercase; 
+    letter-spacing: 0.08em; 
+    margin-bottom: 0.4rem;
+}
+
+.info-card-value { 
+    font-size: 0.95rem; 
+    font-weight: 500; 
+    color: #1a1a2e; 
+}
+
+.advice-card {
+    background: #eff6ff; 
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 10px 10px 0; 
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem; 
+    font-size: 0.88rem; 
+    color: #1e40af; 
+    line-height: 1.6;
+}
+
+.warning-card {
+    background: #fffbeb; 
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 10px 10px 0; 
+    padding: 1rem 1.2rem;
+    font-size: 0.88rem; 
+    color: #92400e; 
+    line-height: 1.6;
+}
+
+.upload-hint { 
+    text-align: center; 
+    color: #9ca3af; 
+    font-size: 0.875rem; 
+    padding: 2.5rem 1rem; 
+}
+
+.history-item {
+    background: white; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 10px;
+    padding: 0.875rem 1rem; 
+    margin-bottom: 0.5rem;
+}
+
+/* ── Buttons main ── */
+section.main .stButton > button {
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+section.main .stButton > button:hover {
+    background-color: #43A047;
+    border-color: #43A047;
+}
+
+section.main .stButton > button:active {
+    background-color: #388E3C;
+    transform: scale(0.98);
+}
+
+/* ── Tabs ── */
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    color: #4CAF50 !important;
+    font-weight: 600;
+}
+
+.stTabs [data-baseweb="tab-highlight"] {
+    background-color: #4CAF50 !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: #43A047; 
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    [data-testid="stSidebar"] {
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .result-class { 
+        font-size: 1.5rem;
+    }
+
+    .block-container { 
+        padding-left: 0.5rem; 
+        padding-right: 0.5rem; 
+    }
+}

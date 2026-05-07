@@ -33,8 +33,8 @@
   },
   "medical": {
     "type": "Déchets médicaux",
-    "recyclable": true,
-    "bac": "Borne textile",
+    "recyclable": false,
+    "bac": "Pharmacie",
     "alt": "Retour à un point de collecte médical",
     "advice": "Les déchets médicaux tels que seringues, aiguilles, stylos injecteurs et pansements doivent être déposésdans des points de collecte spécialisés. Ne pas les jeter dans la poubelle classique. Si l'emballage est vide, il peut être jeté dans la poubelle appropriée (comme le plastique ou le papier), mais uniquement après avoir correctement éliminé le contenu et s'assurer qu'il ne présente aucun danger.",
     "index": 4
