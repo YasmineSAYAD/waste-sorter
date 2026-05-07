@@ -7,7 +7,9 @@ on:
 
 jobs:
 
-  # ── Build & push Docker images ───────────────────────────────────
+  # ────────────────────────────────────────────────────────────────
+  # BUILD & PUSH DOCKER IMAGES
+  # ────────────────────────────────────────────────────────────────
   build:
     name: Build & push Docker images
     runs-on: ubuntu-latest
@@ -15,15 +17,19 @@ jobs:
       contents: read
       packages: write
 
+    outputs:
+      repo_name: ${{ steps.repo_name.outputs.REPO_NAME }}
+      image_tag: ${{ steps.image_tag.outputs.TAG }}
+
     steps:
       - uses: actions/checkout@v4
 
-      # Convert the repository name to lowercase
-      - name: Set image tag in lowercase
-        id: tag
+      # Convert repo name to lowercase and export it
+      - name: Set repo name lowercase
+        id: repo_name
         run: |
-          REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
-          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_OUTPUT
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
@@ -43,8 +49,8 @@ jobs:
           file: app/backend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ env.REPO_NAME }}/backend:latest
-            ghcr.io/${{ env.REPO_NAME }}/backend:${{ steps.image_tag.outputs.TAG }}
+            ghcr.io/${{ steps.repo_name.outputs.REPO_NAME }}/backend:latest
+            ghcr.io/${{ steps.repo_name.outputs.REPO_NAME }}/backend:${{ steps.image_tag.outputs.TAG }}
 
       - name: Build & push frontend
         uses: docker/build-push-action@v5
@@ -53,24 +59,29 @@ jobs:
           file: app/frontend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ env.REPO_NAME }}/frontend:latest
-            ghcr.io/${{ env.REPO_NAME }}/frontend:${{ steps.image_tag.outputs.TAG }}
+            ghcr.io/${{ steps.repo_name.outputs.REPO_NAME }}/frontend:latest
+            ghcr.io/${{ steps.repo_name.outputs.REPO_NAME }}/frontend:${{ steps.image_tag.outputs.TAG }}
 
-  # ── Security scan on Docker images ──────────────────────────────
+  # ────────────────────────────────────────────────────────────────
+  # TRIVY SECURITY SCAN
+  # ────────────────────────────────────────────────────────────────
   trivy:
     name: Trivy image scan
     runs-on: ubuntu-latest
     needs: build
+
     steps:
       - name: Scan backend image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ghcr.io/${{ env.REPO_NAME }}/backend:latest
+          image-ref: ghcr.io/${{ needs.build.outputs.repo_name }}/backend:latest
           format: table
           severity: HIGH,CRITICAL
           exit-code: 1
 
-  # ── Deploy via SSH ───────────────────────────────────────────────
+  # ────────────────────────────────────────────────────────────────
+  # DEPLOY TO SERVER
+  # ────────────────────────────────────────────────────────────────
   deploy:
     name: Deploy to server
     runs-on: ubuntu-latest
