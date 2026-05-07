@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.2.0...v1.3.0) (2026-05-07)
+
+
+### Features
+
+* **CI/CD:** fix image tag format and add image existence check before Trivy scan ([5cf4664](https://github.com/YasmineSAYAD/waste-sorter/commit/5cf4664a939c42009778a15321bad6d6e89e622e))
+
 # [1.2.0](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.1.0...v1.2.0) (2026-05-07)
 
 
