@@ -71,13 +71,18 @@ jobs:
     needs: build
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Scan backend image
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ghcr.io/${{ needs.build.outputs.repo_name }}/backend:latest
           format: table
           severity: HIGH,CRITICAL
+          ignore-unfixed: true
           exit-code: 1
+
 
   # ────────────────────────────────────────────────────────────────
   # DEPLOY TO SERVER

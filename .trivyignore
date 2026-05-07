@@ -1,0 +1,8 @@
+# Ignore CPython vulnerabilities (unfixable until Python releases patches)
+CVE-2025-69534
+CVE-2025-8194
+CVE-2026-1299
+CVE-2026-6100
+
+# Ignore zlib vulnerability (marked will_not_fix)
+CVE-2023-45853
