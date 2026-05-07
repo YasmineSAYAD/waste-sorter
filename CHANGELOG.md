@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.0.3...v1.0.4) (2026-05-07)
+
+
+### Bug Fixes
+
+* **ci:** convert GitHub repository name to lowercase for Docker tags ([00f5d7b](https://github.com/YasmineSAYAD/waste-sorter/commit/00f5d7b3ab3a93e3194b59a75ae98ec68741ebc6))
+
 ## [1.0.3](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.0.2...v1.0.3) (2026-05-07)
 
 
