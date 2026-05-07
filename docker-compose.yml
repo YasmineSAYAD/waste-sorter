@@ -45,6 +45,8 @@ services:
     build:
       context: app/frontend
       dockerfile: Dockerfile
+    environment:
+      - API_URL=http://backend:8000
     restart: unless-stopped
     ports:
       - "8501:8501"
@@ -78,6 +80,7 @@ services:
       - "--storage.tsdb.retention.time=15d"
 
   # ── Grafana ──────────────────────────────────────────────────────
+   
   grafana:
     image: grafana/grafana:latest
     restart: unless-stopped
