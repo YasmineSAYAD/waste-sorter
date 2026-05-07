@@ -146,7 +146,11 @@ jobs:
       - name: Check notebooks have no outputs
         run: |
           for nb in model/notebooks/*.ipynb; do
-            nbstripout --verify "$nb" && echo "$nb — OK"
+              if nbstripout --verify "$nb"; then
+                  echo "$nb — OK"
+              else
+                  echo "$nb — Issue detected"
+              fi
           done
 
       - name: Ruff — lint notebooks (E, F, W)
