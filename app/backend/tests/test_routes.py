@@ -4,11 +4,12 @@ Database interactions are mocked to avoid requiring PostgreSQL.
 """
 import os
 import uuid
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import MagicMock
 
 import pytest
 from httpx import ASGITransport, AsyncClient
 
+from app.backend.main import app
 os.environ["TESTING"] = "1"
 
 # ────────────────────────────────────────────────────────────────
@@ -80,9 +81,6 @@ def override_db():
 # ────────────────────────────────────────────────────────────────
 # Client fixture
 # ────────────────────────────────────────────────────────────────
-
-from app.backend.main import app
-
 @pytest.fixture
 async def client():
     async with AsyncClient(
@@ -142,12 +140,16 @@ async def test_get_nonexistent_image(client: AsyncClient):
 
 @pytest.mark.asyncio
 async def test_delete_nonexistent_image(client: AsyncClient):
-    response = await client.delete("/api/v1/images/00000000-0000-0000-0000-000000000000")
+    response = await client.delete(
+        "/api/v1/images/00000000-0000-0000-0000-000000000000"
+    )
     assert response.status_code == 404
 
 @pytest.mark.asyncio
 async def test_get_image_file_nonexistent(client: AsyncClient):
-    response = await client.get("/api/v1/images/00000000-0000-0000-0000-000000000000/file")
+    response = await client.get(
+        "/api/v1/images/00000000-0000-0000-0000-000000000000/file"
+    )
     assert response.status_code == 404
 
 @pytest.mark.asyncio
@@ -159,7 +161,9 @@ async def test_get_all_images_returns_list(client: AsyncClient):
 # Predictions
 @pytest.mark.asyncio
 async def test_get_nonexistent_prediction(client: AsyncClient):
-    response = await client.get("/api/v1/predictions/00000000-0000-0000-0000-000000000000")
+    response = await client.get(
+        "/api/v1/predictions/00000000-0000-0000-0000-000000000000"
+    )
     assert response.status_code == 404
 
 # Users — register
@@ -281,6 +285,7 @@ async def test_delete_nonexistent_user(client: AsyncClient):
 @pytest.mark.asyncio
 async def test_get_history_nonexistent_user(client: AsyncClient):
     TEST_SESSION.set_get_result(None)
-
-    response = await client.get("/api/v1/users/00000000-0000-0000-0000-000000000000/history")
+    response = await client.get(
+        "/api/v1/users/00000000-0000-0000-0000-000000000000/history"
+    )
     assert response.status_code == 404
