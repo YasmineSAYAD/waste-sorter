@@ -448,43 +448,43 @@ Accès : **http://localhost:3001** (admin / mot de passe dans .env)
 #### Dashboard
 Le dashboard inclut les panels suivants :
 
-**Temps de réponse moyen :** Permet de suivre la performance globale de l’API et de détecter les ralentissements.
+- **Temps de réponse moyen :** Permet de suivre la performance globale de l’API et de détecter les ralentissements.
 
-**Latence P95 :** Indique la latence perçue par les utilisateurs dans les pires cas (95e percentile).
+- **Latence P95 :** Indique la latence perçue par les utilisateurs dans les pires cas (95e percentile).
 
-**Taux d’erreur :** Pourcentage de requêtes échouées (codes 5xx). Indispensable pour détecter les anomalies.
+- **Taux d’erreur :** Pourcentage de requêtes échouées (codes 5xx). Indispensable pour détecter les anomalies.
 
-**Total des requêtes par seconde (RPS) :** Mesure la charge réelle sur l’API.
+- **Total des requêtes par seconde (RPS) :** Mesure la charge réelle sur l’API.
 
-**Top endpoints / nombre de requêtes :** Identifie les routes les plus sollicitées.
+- **Top endpoints / nombre de requêtes :** Identifie les routes les plus sollicitées.
 
-**Usage CPU du process FastAPI :** Permet de détecter les saturations CPU.
+- **Usage CPU du process FastAPI :** Permet de détecter les saturations CPU.
 
-**Mémoire RAM utilisée :** Suivi de la consommation mémoire du process.
+- **Mémoire RAM utilisée :** Suivi de la consommation mémoire du process.
 
-**GC Collections per second :** Indique la fréquence des collectes du Garbage Collector Python (utile pour détecter des fuites mémoire ou une surcharge d’objets temporaires).
+- **GC Collections per second :** Indique la fréquence des collectes du Garbage Collector Python (utile pour détecter des fuites mémoire ou une surcharge d’objets temporaires).
 
 #### Système d’alertes
 Un système complet d’alerting a été mis en place afin de garantir la stabilité, la performance et la disponibilité de l’API.
 Toutes les alertes sont configurées dans Grafana et envoyées directement par email pour permettre une réaction rapide en cas d’incident :
 
-**Temps de réponse moyen trop élevé :** Déclenchée lorsque la moyenne des temps de réponse dépasse un seuil critique, indiquant un ralentissement global de l’API.
+- **Temps de réponse moyen trop élevé :** Déclenchée lorsque la moyenne des temps de réponse dépasse un seuil critique, indiquant un ralentissement global de l’API.
 
-**Latence P95 trop élevée :** Surveille les pires temps de réponse (95e percentile). Une hausse du P95 signale une dégradation perceptible par les utilisateurs.
+- **Latence P95 trop élevée :** Surveille les pires temps de réponse (95e percentile). Une hausse du P95 signale une dégradation perceptible par les utilisateurs.
 
-**Taux d’erreur élevé :** Alerte lorsque le pourcentage de réponses en erreur (5xx) dépasse un seuil défini.
+- **Taux d’erreur élevé :** Alerte lorsque le pourcentage de réponses en erreur (5xx) dépasse un seuil défini.
 Permet de détecter rapidement les anomalies applicatives.
 
-**CPU du process trop élevé :** Déclenchée lorsque le process FastAPI consomme une part excessive du CPU, indiquant une saturation potentielle.
+- **CPU du process trop élevé :** Déclenchée lorsque le process FastAPI consomme une part excessive du CPU, indiquant une saturation potentielle.
 
-**RAM utilisée trop élevée :** Surveille la mémoire utilisée par le process. Une consommation anormale peut indiquer une fuite mémoire ou un risque d’OOM.
+- **RAM utilisée trop élevée :** Surveille la mémoire utilisée par le process. Une consommation anormale peut indiquer une fuite mémoire ou un risque d’OOM.
 
-**GC trop actif (risque de fuite mémoire) :** Alerte lorsque le Garbage Collector Python s’exécute trop fréquemment, ce qui peut révéler une création excessive d’objets ou un comportement anormal.
+- **GC trop actif (risque de fuite mémoire) :** Alerte lorsque le Garbage Collector Python s’exécute trop fréquemment, ce qui peut révéler une création excessive d’objets ou un comportement anormal.
 
-**RPS trop bas (API KO ou bloquée) :** Déclenchée lorsque le nombre de requêtes par seconde chute en dessous d’un seuil minimal.
+- **RPS trop bas (API KO ou bloquée) :** Déclenchée lorsque le nombre de requêtes par seconde chute en dessous d’un seuil minimal.
 Permet de détecter une API potentiellement indisponible.
 
-**Endpoint principal anormalement inactif :** Surveille l’endpoint le plus utilisé, si celui-ci ne reçoit plus de trafic, cela peut indiquer une panne ou un blocage.
+- **Endpoint principal anormalement inactif :** Surveille l’endpoint le plus utilisé, si celui-ci ne reçoit plus de trafic, cela peut indiquer une panne ou un blocage.
 
 ---
 
