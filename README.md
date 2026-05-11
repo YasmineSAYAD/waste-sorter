@@ -621,7 +621,7 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
   <p>
     <a href="http://localhost:8000/docs">API Docs</a> ·
     <a href="http://localhost:8501">Application</a> ·
-    <a href="http://localhost:5000">MLflow</a>
+    <a href="http://localhost:5000">MLflow</a> .
     <a href="http://localhost:3001">Monitoring</a>
   </p>
 </div>
