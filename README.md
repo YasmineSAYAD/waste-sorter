@@ -32,7 +32,8 @@
 - [MLflow](#mlflow)
 - [Variables d'environnement](#variables-denvironnement)
 - [Conformité RGPD](#conformité-rgpd)
-
+- [Auteur](#auteur)
+- [Licence](#licence)
 ---
 
 ## Présentation
@@ -593,8 +594,30 @@ Les pages **CGU** et **Politique de confidentialité** sont accessibles directem
 
 ---
 
+## Auteur
+
+**Yasmine SAYAD**
+
+[![GitHub](https://img.shields.io/badge/GitHub-@YasmineSAYAD-181717?logo=github)](https://github.com/YasmineSAYAD)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yasmine_SAYAD-0A66C2?logo=linkedin)](https://linkedin.com/in/yasmine-sayad)
+
+---
+ 
+## Licence
+ 
+Ce projet est distribué sous licence **MIT**.
+Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+ 
+---
+
 <div align="center">
   <p>Waste sorter pour un monde plus propre.</p>
+  <p>
+    Développé par 
+    <a href="https://github.com/YasmineSAYAD">
+        <strong>Yasmine SAYAD</strong>
+    </a>
+  </p>
   <p>
     <a href="http://localhost:8000/docs">API Docs</a> ·
     <a href="http://localhost:8501">Application</a> ·
