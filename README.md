@@ -471,20 +471,19 @@ Le dashboard inclut les panels suivants :
 Un système complet d’alerting a été mis en place afin de garantir la stabilité, la performance et la disponibilité de l’API.
 Toutes les alertes sont configurées dans Grafana et envoyées directement par email pour permettre une réaction rapide en cas d’incident :
 
-- **Temps de réponse moyen trop élevé :** Déclenchée lorsque la moyenne des temps de réponse dépasse un seuil critique, indiquant un ralentissement global de l’API.
+- **Temps de réponse moyen trop élevé :** Déclenchée lorsque la moyenne des temps de réponse dépasse un seuil critique (500 ms), indiquant un ralentissement global de l’API.
 
-- **Latence P95 trop élevée :** Surveille les pires temps de réponse (95e percentile). Une hausse du P95 signale une dégradation perceptible par les utilisateurs.
+- **Latence P95 trop élevée :** Surveille les pires temps de réponse 95e percentile (P95 > 1s). Une hausse du P95 signale une dégradation perceptible par les utilisateurs.
 
-- **Taux d’erreur élevé :** Alerte lorsque le pourcentage de réponses en erreur (5xx) dépasse un seuil défini.
-Permet de détecter rapidement les anomalies applicatives.
+- **Taux d’erreur élevé :** Alerte lorsque le pourcentage de réponses en erreur (5xx) dépasse un seuil défini (Plus de 5% d’erreurs). Permet de détecter rapidement les anomalies applicatives.
 
-- **CPU du process trop élevé :** Déclenchée lorsque le process FastAPI consomme une part excessive du CPU, indiquant une saturation potentielle.
+- **CPU du process trop élevé :** Déclenchée lorsque le process FastAPI consomme une part excessive du CPU (CPU process > 80%), indiquant une saturation potentielle.
 
-- **RAM utilisée trop élevée :** Surveille la mémoire utilisée par le process. Une consommation anormale peut indiquer une fuite mémoire ou un risque d’OOM.
+- **RAM utilisée trop élevée :** Surveille la mémoire utilisée par le process. Une consommation anormale peut indiquer une fuite mémoire ou un risque d’OOM (RAM > 1 Go).
 
-- **GC trop actif (risque de fuite mémoire) :** Alerte lorsque le Garbage Collector Python s’exécute trop fréquemment, ce qui peut révéler une création excessive d’objets ou un comportement anormal.
+- **GC trop actif (risque de fuite mémoire) :** Alerte lorsque le Garbage Collector Python s’exécute trop fréquemment, ce qui peut révéler une création excessive d’objets ou un comportement anormal (Plus de 2 GC/sec).
 
-- **RPS trop bas (API KO ou bloquée) :** Déclenchée lorsque le nombre de requêtes par seconde chute en dessous d’un seuil minimal.
+- **RPS trop bas (API KO ou bloquée) :** Déclenchée lorsque le nombre de requêtes par seconde chute en dessous d’un seuil minimal (Moins de 0.1 req/sec).
 Permet de détecter une API potentiellement indisponible.
 
 - **Endpoint principal anormalement inactif :** Surveille l’endpoint le plus utilisé, si celui-ci ne reçoit plus de trafic, cela peut indiquer une panne ou un blocage.
