@@ -455,6 +455,8 @@ Le dashboard inclut les panels suivants :
 
 - **Taux d’erreur :** Pourcentage de requêtes échouées (codes 5xx). Indispensable pour détecter les anomalies.
 
+- **Taux de succès:** Pourcentage de requêtes réussies (codes 2xx). Indispensable pour mesurer la fiabilité globale de l’API.
+
 - **Total des requêtes par seconde (RPS) :** Mesure la charge réelle sur l’API.
 
 - **Top endpoints / nombre de requêtes :** Identifie les routes les plus sollicitées.
