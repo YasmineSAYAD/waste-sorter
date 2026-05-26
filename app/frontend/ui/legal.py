@@ -40,7 +40,7 @@ def page_cgu():
     sections = [
         ("1. Objet", """
 Les présentes Conditions Générales d'Utilisation (CGU)
-régissent l'accès et l'utilisation de l'application **waste-sorter**,
+régissent l'accès et l'utilisation de l'application <b>waste-sorter</b>,
 accessible via l'interface web mise à disposition par l'éditeur.
 En utilisant l'application, vous acceptez sans réserve les présentes CGU.
         """),
@@ -57,6 +57,7 @@ lors de la création de son compte et à les maintenir à jour.
         """),
         ("4. Obligations de l'utilisateur", """
 L'utilisateur s'engage à :
+
 - Utiliser l'application de manière loyale et conforme à sa destination
 - Ne pas tenter de contourner les mesures de sécurité
 - Ne pas uploader de contenu illicite, offensant ou portant atteinte aux droits de tiers
