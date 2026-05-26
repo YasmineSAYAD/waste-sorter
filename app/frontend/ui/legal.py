@@ -129,8 +129,8 @@ Nous collectons uniquement les données strictement nécessaires
 - **Données techniques** : logs d'accès (adresse IP, horodatage)
  — conservés 30 jours maximum
         """),
-        ("4. Durée de conservation", """ 
-Les données sont conservées selon les durées suivantes : 
+        ("4. Durée de conservation", """
+Les données sont conservées selon les durées suivantes :
 
 - **Données de compte** : conservées pendant toute la durée d'activité du compte, puis
 supprimées sous 30 jours après clôture
@@ -200,6 +200,6 @@ ou de changement dans nos pratiques.
             <p>{content.strip()}</p>
         </div>
         """, unsafe_allow_html=True)
-  
-  
+
+
 

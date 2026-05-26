@@ -70,28 +70,52 @@ def page_history():
         cols = st.columns([1, 1, 2, 1, 1])
 
         with cols[0]:
-            if st.button("«", key="hist_first", disabled=(page == 1), use_container_width=True):
+            if st.button(
+                "«",
+                key="hist_first",
+                disabled=(page == 1),
+                use_container_width=True
+            ):
                 st.session_state.history_page = 1
                 st.rerun()
 
         with cols[1]:
-            if st.button("‹", key="hist_prev", disabled=(page == 1), use_container_width=True):
+            if st.button(
+                "‹",
+                key="hist_prev",
+                disabled=(page == 1),
+                use_container_width=True
+            ):
                 st.session_state.history_page = page - 1
                 st.rerun()
 
         with cols[2]:
-            st.markdown(
-                f"<div style='text-align:center;padding-top:0.4rem;font-size:0.85rem;color:#6b7280;'>"
-                f"{page} / {total_pages}</div>",
-                unsafe_allow_html=True
+            html = (
+                "<div style='text-align:center;"
+                "padding-top:0.4rem;"
+                "font-size:0.85rem;"
+                "color:#6b7280;'>"
+                f"{page} / {total_pages}</div>"
             )
 
+            st.markdown(html, unsafe_allow_html=True)
+
         with cols[3]:
-            if st.button("›", key="hist_next", disabled=(page == total_pages), use_container_width=True):
+            if st.button(
+                "›",
+                key="hist_next",
+                disabled=(page == total_pages),
+                use_container_width=True
+            ):
                 st.session_state.history_page = page + 1
                 st.rerun()
 
         with cols[4]:
-            if st.button("»", key="hist_last", disabled=(page == total_pages), use_container_width=True):
+            if st.button(
+                "»",
+                key="hist_last",
+                disabled=(page == total_pages),
+                use_container_width=True
+            ):
                 st.session_state.history_page = total_pages
                 st.rerun()
