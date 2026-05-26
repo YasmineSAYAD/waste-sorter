@@ -30,7 +30,7 @@ def render_sidebar():
             ("history", "Historique"),
             ("profile", "Mon compte"),
             ("cgu", "CGU"),
-            ("politique", "Politique"),
+            ("politique", "Confidentialité"),
         ]
 
         for key, label in nav_items:

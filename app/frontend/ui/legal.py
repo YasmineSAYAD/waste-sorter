@@ -111,7 +111,7 @@ def page_politique():
     sections = [
         ("1. Responsable du traitement", """
 Le responsable du traitement des données personnelles collectées via l'application
-waste-sorter est : **waste-sorter**, joignable à l'adresse : contact@waste-sorter.fr
+waste-sorter est :<b>waste-sorter</b>, joignable à l'adresse : contact@waste-sorter.fr
 
 Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi
 Informatique et Libertés du 6 janvier 1978 modifiée, nous nous engageons à protéger vos
@@ -129,16 +129,9 @@ Nous collectons uniquement les données strictement nécessaires
 - **Données techniques** : logs d'accès (adresse IP, horodatage)
  — conservés 30 jours maximum
         """),
-        ("3. Finalités et bases légales", """
-| Finalité | Base légale (RGPD art. 6) |
-|---|---|
-| Création et gestion du compte | Exécution du contrat |
-| Fourniture du service de classification | Exécution du contrat |
-| Amélioration du modèle IA | Intérêt légitime (données anonymisées) |
-| Envoi de notifications | Consentement |
-| Conformité légale | Obligation légale |
-        """),
-        ("4. Durée de conservation", """
+        ("4. Durée de conservation", """ 
+Les données sont conservées selon les durées suivantes : 
+
 - **Données de compte** : conservées pendant toute la durée d'activité du compte, puis
 supprimées sous 30 jours après clôture
 - **Images uploadées** : conservées 12 mois, puis supprimées automatiquement
@@ -207,3 +200,6 @@ ou de changement dans nos pratiques.
             <p>{content.strip()}</p>
         </div>
         """, unsafe_allow_html=True)
+  
+  
+
