@@ -1,5 +1,4 @@
 import streamlit as st
-
 from ui.auth import do_logout
 
 def render_sidebar():
@@ -10,49 +9,6 @@ def render_sidebar():
     full_name = f"{first} {last}".strip() or "Utilisateur"
 
     with st.sidebar:
-        st.markdown("""
-        <div class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
-        <script>
-        function toggleSidebar() {
-            const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
-            const overlay = window.parent.document.getElementById('sidebarOverlay');
-            const btn = window.parent.document.getElementById('hamburgerBtn');
-            if (!sidebar) return;
-            sidebar.classList.toggle('sidebar-open');
-            overlay.classList.toggle('active');
-            // Animate hamburger → X
-            const spans = btn.querySelectorAll('span');
-            if (sidebar.classList.contains('sidebar-open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
-            }
-        }
-        function closeSidebar() {
-            const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
-            const overlay = window.parent.document.getElementById('sidebarOverlay');
-            const btn = window.parent.document.getElementById('hamburgerBtn');
-            if (!sidebar) return;
-            sidebar.classList.remove('sidebar-open');
-            overlay.classList.remove('active');
-            const spans = btn.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '';
-            spans[2].style.transform = '';
-        }
-        </script>
-        """, unsafe_allow_html=True)
-
         st.markdown("""
         <div class="logo-horizontal">
             <span class="logo-icon-horizontal">♻</span>
@@ -65,9 +21,7 @@ def render_sidebar():
         st.markdown(f"""
         <div class="sidebar-user">
             <div class="sidebar-avatar">{initials}</div>
-            <div>
-                <div class="sidebar-name">{full_name}</div>
-            </div>
+            <div class="sidebar-name">{full_name}</div>
         </div>
         """, unsafe_allow_html=True)
 

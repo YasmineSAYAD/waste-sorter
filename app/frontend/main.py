@@ -16,22 +16,25 @@ st.set_page_config(
     page_title="waste-sorter",
     page_icon="images/favicon.png",
     layout="wide",
-    initial_sidebar_state="auto",
+    initial_sidebar_state="expanded",
 )
 
+# Fonts
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         rel="stylesheet">
 """, unsafe_allow_html=True)
 
+# Load CSS
 load_css()
+
+# Init
 init_session()
 load_config()
 
-
+# Auth
 if not st.session_state.authenticated:
     page_login()
 else:
