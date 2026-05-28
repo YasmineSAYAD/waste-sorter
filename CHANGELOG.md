@@ -1,3 +1,18 @@
+# [1.4.0](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.3.0...v1.4.0) (2026-05-28)
+
+
+### Bug Fixes
+
+* **front:** clean up code and resolve Ruff E,F,W errors in frontend ([46c8ca7](https://github.com/YasmineSAYAD/waste-sorter/commit/46c8ca706b32cf1fe4149a380cd8791200562b84))
+
+
+### Features
+
+* **front:** add items pagination on listing history page ([e5d5c20](https://github.com/YasmineSAYAD/waste-sorter/commit/e5d5c2004608a08ec5ddbbd297f2f5115ef96de3))
+* **front:** improve cgu page ([333e426](https://github.com/YasmineSAYAD/waste-sorter/commit/333e4266eaf568310bf48da70f2ad3336c6d9d09))
+* **front:** improve privacy page ([cbdb3a1](https://github.com/YasmineSAYAD/waste-sorter/commit/cbdb3a19dd39c956786a11f156aca892141f3ffa))
+* **front:** improve responsive sidebar ([b671eac](https://github.com/YasmineSAYAD/waste-sorter/commit/b671eac5b268247cf67a386c7b32919ec2729ce0))
+
 # [1.3.0](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.2.0...v1.3.0) (2026-05-07)
 
 
