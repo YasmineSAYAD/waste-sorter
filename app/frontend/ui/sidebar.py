@@ -1,5 +1,4 @@
 import streamlit as st
-
 from ui.auth import do_logout
 
 def render_sidebar():
@@ -10,7 +9,6 @@ def render_sidebar():
     full_name = f"{first} {last}".strip() or "Utilisateur"
 
     with st.sidebar:
-
         st.markdown("""
         <div class="logo-horizontal">
             <span class="logo-icon-horizontal">♻</span>
@@ -23,9 +21,7 @@ def render_sidebar():
         st.markdown(f"""
         <div class="sidebar-user">
             <div class="sidebar-avatar">{initials}</div>
-            <div>
-                <div class="sidebar-name">{full_name}</div>
-            </div>
+            <div class="sidebar-name">{full_name}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -34,7 +30,7 @@ def render_sidebar():
             ("history", "Historique"),
             ("profile", "Mon compte"),
             ("cgu", "CGU"),
-            ("politique", "Politique"),
+            ("politique", "Confidentialité"),
         ]
 
         for key, label in nav_items:
