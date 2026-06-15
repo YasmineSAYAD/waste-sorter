@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.4.0...v1.4.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* auto-fix ruff linting errors in frontend (E, F, W) ([717af29](https://github.com/YasmineSAYAD/waste-sorter/commit/717af29cd1b54f86caea5593d7d0a7d3db663faa))
+* resolve Prometheus _IncludedRouter crash, nullable alt field and empty response on prediction ([f29ab04](https://github.com/YasmineSAYAD/waste-sorter/commit/f29ab04e00f54bbc779c72f2b411e52b80f81dc6))
+
 # [1.4.0](https://github.com/YasmineSAYAD/waste-sorter/compare/v1.3.0...v1.4.0) (2026-05-28)
 
 
