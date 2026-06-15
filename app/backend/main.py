@@ -10,7 +10,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from prometheus_fastapi_instrumentator import Instrumentator
 from prometheus_fastapi_instrumentator import routing as _pfi_routing
-from starlette.routing import Route
 
 from app.backend.api.routes import images, predictions, users, waste
 from app.backend.core.config import settings
@@ -64,7 +63,7 @@ async def global_exception_handler(request, exc):
     return JSONResponse(
         status_code=500,
         content={
-            "detail": str(exc), 
+            "detail": str(exc),
             "trace": traceback.format_exc()
         },
     )
