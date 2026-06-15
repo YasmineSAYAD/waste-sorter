@@ -7,13 +7,15 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_fastapi_instrumentator import routing as _pfi_routing
+from starlette.routing import Route
 
 from app.backend.api.routes import images, predictions, users, waste
 from app.backend.core.config import settings
 from app.backend.core.model import load_model
 from app.backend.db.session import init_db
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -53,6 +55,28 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── Handler ─────────────────────────────────────────────────────────
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    import traceback
+    print(traceback.format_exc())  # visible in Docker logs
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": str(exc), 
+            "trace": traceback.format_exc()
+        },
+    )
+
+# ── Patch Prometheus routing bug (_IncludedRouter has no .path) ──
+_original_get_route_name = _pfi_routing._get_route_name
+
+def _patched_get_route_name(scope, routes):
+    filtered = [r for r in routes if hasattr(r, "path")]
+    return _original_get_route_name(scope, filtered)
+
+_pfi_routing._get_route_name = _patched_get_route_name
 
 # ── Prometheus metrics ────────────────────────────────────────────
 Instrumentator().instrument(app).expose(app, endpoint="/metrics")

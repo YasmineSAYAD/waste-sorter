@@ -61,7 +61,7 @@ def run_inference(image_path: str) -> dict:
         "confidence": confidence,
         "recyclable": LABEL_MAP[predicted_class]["recyclable"],
         "bac": LABEL_MAP[predicted_class]["bac"],
-        "alt": LABEL_MAP[predicted_class]["alt"],
+        "alt": LABEL_MAP[predicted_class]["alt"] or "",
         "waste_type": LABEL_MAP[predicted_class]["type"],
         "advice": LABEL_MAP[predicted_class]["advice"],
         "model_version": settings.MODEL_VERSION,

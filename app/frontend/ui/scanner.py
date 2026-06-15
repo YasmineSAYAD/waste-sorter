@@ -32,15 +32,15 @@ def render_result(result: dict):
         f'<div class="info-card-value">{bac}</div></div>',
         unsafe_allow_html=True,
     )
-
-    st.markdown(
-        f'<div class="info-card">'
-        f'<div class="info-card-title">'
-        f'<i class="fas fa-exchange-alt"></i> Alternative'
-        f'</div>'
-        f'<div class="info-card-value">{alt}</div></div>',
-        unsafe_allow_html=True,
-    )
+    if alt:
+        st.markdown(
+            f'<div class="info-card">'
+            f'<div class="info-card-title">'
+            f'<i class="fas fa-exchange-alt"></i> Alternative'
+            f'</div>'
+            f'<div class="info-card-value">{alt}</div></div>',
+            unsafe_allow_html=True,
+        )
 
     if advice:
         st.markdown(
